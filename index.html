@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redes y Soporte IT · Repaso</title>
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA2NCA2NCc+PHJlY3Qgd2lkdGg9JzY0JyBoZWlnaHQ9JzY0JyByeD0nMTQnIGZpbGw9JyMwZjc2NmUnLz48Y2lyY2xlIGN4PSczMicgY3k9JzE2JyByPSc2JyBmaWxsPScjZmZmJy8+PGNpcmNsZSBjeD0nMTYnIGN5PSc0Nicgcj0nNicgZmlsbD0nI2ZmZicvPjxjaXJjbGUgY3g9JzQ4JyBjeT0nNDYnIHI9JzYnIGZpbGw9JyNmZmYnLz48cGF0aCBkPSdNMzIgMjJ2OE0yNiAzOWwtNSAzTTM4IDM5bDUgMycgc3Ryb2tlPScjZmZmJyBzdHJva2Utd2lkdGg9JzQnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcvPjwvc3ZnPg==">
+<style>
+  :root {
+    --bg: #f4f6fa;
+    --surface: #ffffff;
+    --ink: #16202f;
+    --muted: #5b6b80;
+    --brand: #0f766e;
+    --brand-soft: #e6f4f1;
+    --brand-ink: #ffffff;
+    --accent: #4338ca;
+    --line: #e3e8f0;
+    --hero-1: #e9fbf6;
+    --hero-2: #eef2ff;
+    --code-bg: #f1f5f9;
+    --warn: #92400e;
+    --warn-bg: #fff7ed;
+    --ok: #166534;
+    --ok-bg: #ecfdf3;
+    --err: #b91c1c;
+    --err-bg: #fef2f2;
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(22, 32, 47, .07);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b1119;
+      --surface: #121a26;
+      --ink: #e8eef8;
+      --muted: #9aabc2;
+      --brand: #2dd4bf;
+      --brand-soft: #0d2b28;
+      --brand-ink: #04211e;
+      --accent: #a5b4fc;
+      --line: #223043;
+      --hero-1: #0d1a22;
+      --hero-2: #12182b;
+      --code-bg: #0a1520;
+      --warn: #fbbf24;
+      --warn-bg: #2a2113;
+      --ok: #4ade80;
+      --ok-bg: #0f2a1c;
+      --err: #f87171;
+      --err-bg: #2b1414;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Cabecera */
+  .hero {
+    padding: 56px 0 34px;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(900px 300px at 8% -20%, rgba(15, 118, 110, .18), transparent 60%),
+      radial-gradient(700px 260px at 100% 0%, rgba(67, 56, 202, .14), transparent 60%),
+      linear-gradient(180deg, var(--hero-1), var(--bg));
+  }
+
+  .eyebrow {
+    margin: 0 0 10px;
+    color: var(--brand);
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4.5vw, 3.1rem);
+    line-height: 1.1;
+    letter-spacing: -.03em;
+  }
+
+  .lead {
+    max-width: 640px;
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    font-size: .8rem;
+    font-weight: 600;
+  }
+
+  .chip::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--brand);
+  }
+
+  main { padding: 30px 0 64px; }
+
+  /* Pestañas */
+  .tabs {
+    position: sticky;
+    top: 12px;
+    z-index: 10;
+    display: flex;
+    gap: 6px;
+    padding: 6px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+  }
+
+  .tab {
+    flex: 1;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: .95rem;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .tab:hover { color: var(--brand); }
+
+  .tab.active {
+    background: var(--brand-soft);
+    color: var(--brand);
+  }
+
+  .tab:focus-visible,
+  .btn:focus-visible,
+  .flashcard:focus-visible,
+  .option:focus-within {
+    outline: 3px solid color-mix(in srgb, var(--brand) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  .panel { margin-top: 28px; }
+  .panel.active { animation: fadeUp .28s ease; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .intro {
+    margin: 0 0 20px;
+    color: var(--muted);
+  }
+
+  /* Bloques del resumen */
+  .topic {
+    margin: 0 0 22px;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .topic h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 12px;
+    font-size: 1.35rem;
+    letter-spacing: -.01em;
+  }
+
+  .num {
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--brand-soft);
+    color: var(--brand);
+    font-size: 1rem;
+  }
+
+  .topic p { margin: 10px 0; }
+  .topic p:last-child { margin-bottom: 0; }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .fact {
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--bg);
+    font-weight: 600;
+  }
+
+  .fact .label {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--muted);
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .exam {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-left: 4px solid var(--warn);
+    border-radius: 0 12px 12px 0;
+    background: var(--warn-bg);
+  }
+
+  .table-wrap {
+    margin: 16px 0 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+    font-size: .92rem;
+  }
+
+  th {
+    padding: 11px 14px;
+    background: var(--brand-soft);
+    font-size: .72rem;
+    letter-spacing: .07em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 12px 14px;
+    border-top: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  tbody tr:hover { background: color-mix(in srgb, var(--brand-soft) 45%, transparent); }
+
+  .commands th:first-child,
+  .commands td:first-child { width: 40%; }
+
+  .commands code { white-space: nowrap; }
+
+  .split {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 14px;
+  }
+
+  .mini-card {
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--bg);
+  }
+
+  .mini-card h3 {
+    margin: 6px 0 6px;
+    font-size: 1.02rem;
+  }
+
+  .mini-card p { margin: 6px 0; font-size: .94rem; }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--brand-soft);
+    color: var(--brand);
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+
+  .badge.accent {
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    color: var(--accent);
+  }
+
+  .gui-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  code {
+    padding: 1px 6px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--code-bg);
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: .88em;
+  }
+
+  /* Trucos */
+  .mnemonic {
+    padding: 24px 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--brand-soft), var(--surface) 70%);
+  }
+
+  .mnemonic h2 {
+    margin: 0 0 10px;
+    font-size: 1.2rem;
+  }
+
+  .mnemonic ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .mnemonic li { margin: 6px 0; }
+
+  /* Cabecera de panel */
+  .panel-head { margin-bottom: 18px; }
+
+  .panel-head h2 {
+    margin: 0;
+    font-size: 1.45rem;
+    letter-spacing: -.02em;
+  }
+
+  .panel-head p {
+    margin: 6px 0 0;
+    color: var(--muted);
+  }
+
+  /* Tarjetas */
+  .fc-layout { max-width: 760px; margin: 0 auto; }
+
+  .flashcard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 14px;
+    min-height: 280px;
+    padding: 34px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+
+  .flashcard:hover {
+    transform: translateY(-2px);
+    border-color: var(--brand);
+  }
+
+  .flashcard.revealed { border-color: var(--brand); }
+
+  .fc-label {
+    color: var(--brand);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  #fc-question {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .fc-answer {
+    padding: 16px 18px;
+    border-radius: 12px;
+    background: var(--brand-soft);
+    font-size: 1rem;
+  }
+
+  .fc-hint {
+    margin-top: auto;
+    color: var(--muted);
+    font-size: .82rem;
+  }
+
+  .fc-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .fc-counter {
+    color: var(--muted);
+    font-size: .9rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .fc-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+  }
+
+  .btn {
+    padding: 10px 18px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+    font-size: .92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color .12s ease, color .12s ease, background .12s ease;
+  }
+
+  .btn:hover:not(:disabled) {
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+
+  .btn:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+  }
+
+  .btn.primary {
+    border-color: var(--brand);
+    background: var(--brand);
+    color: var(--brand-ink);
+  }
+
+  .btn.primary:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--brand) 88%, black);
+    color: var(--brand-ink);
+  }
+
+  .btn.ghost { background: transparent; }
+
+  /* Quiz */
+  .question {
+    margin: 0 0 14px;
+    padding: 20px;
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    transition: border-color .12s ease;
+  }
+
+  .question.missing {
+    border-color: var(--warn);
+    box-shadow: 0 0 0 3px var(--warn-bg);
+  }
+
+  .question legend {
+    display: flex;
+    gap: 8px;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .qnum { color: var(--brand); }
+
+  .options {
+    display: grid;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color .12s ease, background .12s ease;
+  }
+
+  .option:hover { border-color: var(--brand); }
+
+  .option input {
+    margin-top: 5px;
+    accent-color: var(--brand);
+  }
+
+  .option span { flex: 1; }
+
+  .option:has(input:checked) {
+    border-color: var(--brand);
+    background: var(--brand-soft);
+  }
+
+  .question .option.correct {
+    border-color: var(--ok);
+    background: var(--ok-bg);
+  }
+
+  .question .option.correct::after {
+    content: "✓";
+    color: var(--ok);
+    font-weight: 800;
+  }
+
+  .question .option.wrong {
+    border-color: var(--err);
+    background: var(--err-bg);
+  }
+
+  .question .option.wrong::after {
+    content: "✕";
+    color: var(--err);
+    font-weight: 800;
+  }
+
+  .explain {
+    margin: 14px 0 0;
+    padding: 12px 14px;
+    border-left: 3px solid var(--brand);
+    border-radius: 0 10px 10px 0;
+    background: var(--bg);
+    color: var(--muted);
+    font-size: .9rem;
+  }
+
+  .result {
+    display: none;
+    margin: 18px 0;
+    padding: 16px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+  }
+
+  .result.show { display: block; }
+  .result.good { border: 1px solid var(--ok); background: var(--ok-bg); color: var(--ok); }
+  .result.mid { border: 1px solid var(--warn); background: var(--warn-bg); color: var(--warn); }
+  .result.bad { border: 1px solid var(--err); background: var(--err-bg); color: var(--err); }
+
+  footer {
+    padding: 24px 0 40px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: .84rem;
+    text-align: center;
+  }
+
+  @media (max-width: 720px) {
+    .split { grid-template-columns: 1fr; }
+    .topic { padding: 22px; }
+    .flashcard { padding: 26px; min-height: 240px; }
+    .hero { padding-top: 40px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      transition-duration: .01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  @media print {
+    .tabs, .fc-controls, .fc-footer, #quiz-check { display: none !important; }
+    .panel[hidden] { display: block !important; }
+    .topic, .flashcard, .question { box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Guía de repaso · Soporte IT</p>
+    <h1>Redes y Soporte IT</h1>
+    <p class="lead">Lo esencial de HTTPS, hub/switch/router, direcciones IP, VPN y diagnóstico en Windows, con tarjetas y quiz para memorizar.</p>
+    <ul class="chips">
+      <li class="chip">HTTPS · TCP 443</li>
+      <li class="chip">HTTP · TCP 80</li>
+      <li class="chip">Hub · capa 1</li>
+      <li class="chip">Switch · capa 2</li>
+      <li class="chip">Router · capa 3</li>
+      <li class="chip">DHCP · IP dinámica</li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="tabs" role="tablist" aria-label="Secciones de repaso">
+    <button class="tab active" id="tab-resumen" role="tab" aria-selected="true" aria-controls="panel-resumen" data-target="panel-resumen" type="button">Resumen</button>
+    <button class="tab" id="tab-tarjetas" role="tab" aria-selected="false" aria-controls="panel-tarjetas" data-target="panel-tarjetas" type="button">Tarjetas</button>
+    <button class="tab" id="tab-quiz" role="tab" aria-selected="false" aria-controls="panel-quiz" data-target="panel-quiz" type="button">Quiz</button>
+  </nav>
+
+  <!-- RESUMEN -->
+  <section class="panel active" id="panel-resumen" role="tabpanel" aria-labelledby="tab-resumen">
+    <p class="intro">Lee los cinco bloques y después ponte a prueba con las <strong>tarjetas</strong> y el <strong>quiz</strong>.</p>
+
+    <article class="topic">
+      <h2><span class="num">1</span> HTTPS</h2>
+      <p><strong>Qué es:</strong> la versión segura de HTTP. Cifra los datos que viajan entre el navegador del usuario y el servidor web para evitar que sean interceptados o leídos por terceros (ataques <em>Man-in-the-Middle</em>).</p>
+      <div class="facts">
+        <div class="fact"><span class="label">Cifrado</span>Certificados SSL/TLS</div>
+        <div class="fact"><span class="label">Puerto HTTPS</span>TCP 443</div>
+        <div class="fact"><span class="label">HTTP sin cifrar</span>TCP 80</div>
+      </div>
+      <div class="exam"><strong>Enfoque de prueba:</strong> si un usuario no puede acceder a una web segura, revisa que el <strong>puerto 443</strong> no esté bloqueado en el firewall y que la <strong>fecha y hora del PC</strong> estén sincronizadas; una hora incorrecta invalida el certificado SSL localmente.</div>
+    </article>
+
+    <article class="topic">
+      <h2><span class="num">2</span> Hub vs. Switch vs. Router</h2>
+      <p>Son los pilares físicos de una red. La clave está en la <strong>capa OSI</strong> en la que opera cada dispositivo.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Dispositivo</th>
+              <th>Capa OSI</th>
+              <th>Identificador que lee</th>
+              <th>Comportamiento</th>
+              <th>Uso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hub</strong></td>
+              <td>Capa 1 · Física</td>
+              <td>Ninguno (solo pulsos eléctricos)</td>
+              <td>Inunda el tráfico a todos los puertos (broadcast). Genera colisiones.</td>
+              <td>Obsoleto; ya no se usa en redes modernas.</td>
+            </tr>
+            <tr>
+              <td><strong>Switch</strong></td>
+              <td>Capa 2 · Enlace de datos</td>
+              <td>Direcciones MAC</td>
+              <td>Reenvía el tráfico solo al puerto del destino usando la <strong>tabla CAM</strong>.</td>
+              <td>Conectar varios equipos dentro de una misma LAN.</td>
+            </tr>
+            <tr>
+              <td><strong>Router</strong></td>
+              <td>Capa 3 · Red</td>
+              <td>Direcciones IP</td>
+              <td>Calcula la mejor ruta y enruta paquetes entre redes distintas.</td>
+              <td>Conectar redes diferentes: LAN ↔ Internet u otra sucursal.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="exam"><strong>Regla rápida:</strong> Hub → capa 1; Switch → capa 2 (MAC); Router → capa 3 (IP).</div>
+    </article>
+
+    <article class="topic">
+      <h2><span class="num">3</span> IP estática vs. dinámica</h2>
+      <div class="split">
+        <div class="mini-card">
+          <span class="badge">Automática</span>
+          <h3>IP dinámica</h3>
+          <p>La asigna automáticamente un servidor <strong>DHCP</strong>. Tiene un <strong>lease time</strong> (tiempo de concesión) y puede cambiar.</p>
+          <p><strong>Uso ideal:</strong> computadoras de usuarios, laptops y smartphones. Facilita la administración masiva.</p>
+        </div>
+        <div class="mini-card">
+          <span class="badge accent">Manual</span>
+          <h3>IP estática</h3>
+          <p>La configura a mano un administrador en las propiedades de red del equipo y nunca cambia.</p>
+          <p><strong>Uso ideal:</strong> servidores, impresoras de red, cámaras IP e interfaces de routers o switches. Los equipos que brindan servicios deben estar siempre en la misma dirección.</p>
+        </div>
+      </div>
+      <div class="exam"><strong>Riesgo:</strong> si configuras una IP estática que ya está en uso, provocarás un <strong>conflicto de direcciones IP</strong>.</div>
+    </article>
+
+    <article class="topic">
+      <h2><span class="num">4</span> Red privada virtual (VPN)</h2>
+      <p><strong>Qué es:</strong> un túnel cifrado y seguro a través de una red pública (Internet) para proteger los datos corporativos.</p>
+      <div class="split">
+        <div class="mini-card">
+          <span class="badge">Client-to-Site</span>
+          <h3>Acceso remoto</h3>
+          <p>Un empleado en Home Office se conecta a los servidores de la oficina mediante un software cliente, por ejemplo <strong>Cisco AnyConnect</strong>, <strong>OpenVPN</strong> o <strong>FortiClient</strong>.</p>
+        </div>
+        <div class="mini-card">
+          <span class="badge">Site-to-Site</span>
+          <h3>Sitio a sitio</h3>
+          <p>Conecta los routers de dos sucursales físicas para que compartan recursos de red de forma transparente para los usuarios.</p>
+        </div>
+      </div>
+      <div class="exam"><strong>Enfoque de prueba:</strong> una VPN no «da internet mágico»: necesita una conexión a internet previa funcionando. Su función principal es <strong>cifrar el tráfico</strong> y dar acceso a <strong>recursos internos (IPs privadas)</strong> desde el exterior.</div>
+    </article>
+
+    <article class="topic">
+      <h2><span class="num">5</span> Windows: diagnóstico y soporte</h2>
+      <p>En una prueba técnica no se evalúa ofimática, sino la capacidad de diagnosticar problemas con herramientas nativas.</p>
+      <div class="table-wrap">
+        <table class="commands">
+          <thead>
+            <tr>
+              <th>Comando</th>
+              <th>Para qué sirve</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>ipconfig</code></td><td>Muestra la IP actual del equipo.</td></tr>
+            <tr><td><code>ipconfig /all</code></td><td>Muestra IP, dirección MAC, servidor DNS y servidor DHCP.</td></tr>
+            <tr><td><code>ipconfig /release</code> → <code>ipconfig /renew</code></td><td>Suelta la IP actual y pide una nueva IP dinámica al servidor DHCP. Soluciona muchos problemas locales.</td></tr>
+            <tr><td><code>ipconfig /flushdns</code></td><td>Borra la caché DNS. Útil cuando una web cambió de IP y el navegador sigue intentando ir a la IP vieja.</td></tr>
+            <tr><td><code>ping [IP o dominio]</code></td><td>Comprueba si hay conectividad básica con un destino.</td></tr>
+            <tr><td><code>tracert [IP o dominio]</code></td><td>Muestra todos los saltos (routers) por los que pasa el paquete; ayuda a ver dónde se corta la conexión.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="gui-grid">
+        <div class="mini-card">
+          <h3>Administrador de tareas</h3>
+          <p>Matar procesos colgados y ver el consumo de recursos.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Visor de eventos</h3>
+          <p>Revisar los logs del sistema y ver por qué falló una aplicación o por qué se reinició el PC.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Servicios (services.msc)</h3>
+          <p>Reiniciar procesos del sistema. Ejemplo: si la impresora no funciona, reiniciar <strong>Print Spooler</strong> / Cola de impresión.</p>
+        </div>
+      </div>
+    </article>
+
+    <aside class="mnemonic">
+      <h2>Trucos para recordar</h2>
+      <ul>
+        <li><strong>80 / 443:</strong> HTTP va sin cifrar por el 80; el «S» de Secure añade el 443.</li>
+        <li><strong>1-2-3:</strong> Hub (capa 1), Switch (capa 2, MAC) y Router (capa 3, IP).</li>
+        <li><strong>DHCP = dinámica</strong>; configurada a mano = estática.</li>
+        <li><strong>HTTPS falla:</strong> revisa el puerto 443 y la hora del equipo.</li>
+        <li><strong>Sin internet no hay VPN:</strong> el túnel viaja sobre una conexión existente.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <!-- TARJETAS -->
+  <section class="panel" id="panel-tarjetas" role="tabpanel" aria-labelledby="tab-tarjetas" hidden>
+    <div class="panel-head">
+      <h2>Tarjetas de memoria</h2>
+      <p>Pulsa la tarjeta para revelar la respuesta. Usa «Mezclar» para cambiar el orden.</p>
+    </div>
+    <div class="fc-layout">
+      <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-expanded="false">
+        <span class="fc-label">Pregunta</span>
+        <p id="fc-question"></p>
+        <div class="fc-answer" id="fc-answer" hidden></div>
+        <span class="fc-hint" id="fc-hint">Pulsa para ver la respuesta</span>
+      </div>
+      <div class="fc-controls">
+        <button class="btn" id="fc-prev" type="button">← Anterior</button>
+        <span class="fc-counter" id="fc-counter">1 / 1</span>
+        <button class="btn" id="fc-next" type="button">Siguiente →</button>
+      </div>
+      <div class="fc-footer">
+        <button class="btn ghost" id="fc-shuffle" type="button">🔀 Mezclar tarjetas</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="panel" id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden>
+    <div class="panel-head">
+      <h2>Quiz rápido</h2>
+      <p>Elige una respuesta por pregunta y pulsa «Comprobar respuestas».</p>
+    </div>
+    <div id="quiz-list"></div>
+    <div class="result" id="quiz-result" role="status" aria-live="polite"></div>
+    <button class="btn primary" id="quiz-check" type="button">Comprobar respuestas</button>
+  </section>
+</main>
+
+<footer>
+  Redes y Soporte IT · Guía de repaso para memorizar los conceptos clave.
+</footer>
+
+<script>
+  // ---------- Pestañas ----------
+  const tabs = [...document.querySelectorAll('.tab')];
+  const panels = [...document.querySelectorAll('.panel')];
+
+  function showTab(targetId) {
+    tabs.forEach((tab) => {
+      const active = tab.dataset.target === targetId;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', String(active));
+    });
+    panels.forEach((panel) => {
+      const active = panel.id === targetId;
+      panel.hidden = !active;
+      panel.classList.toggle('active', active);
+    });
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => showTab(tab.dataset.target));
+  });
+
+  document.querySelector('.tabs').addEventListener('keydown', (event) => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    const index = tabs.indexOf(document.activeElement);
+    if (index < 0) return;
+    event.preventDefault();
+    const next = tabs[(index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+    next.focus();
+    next.click();
+  });
+
+  // ---------- Tarjetas ----------
+  const cards = [
+    { q: '¿Qué es HTTPS y qué protege?', a: 'Es la versión segura de HTTP. Cifra los datos entre el navegador y el servidor y evita interceptaciones y ataques Man-in-the-Middle.' },
+    { q: '¿Qué protocolo usa HTTPS para cifrar la conexión?', a: 'SSL/TLS, mediante certificados digitales.' },
+    { q: '¿Qué puertos TCP usan HTTP y HTTPS?', a: 'HTTP sin cifrar: TCP 80. HTTPS: TCP 443.' },
+    { q: 'Un usuario no puede abrir una web HTTPS. ¿Qué dos cosas revisas?', a: 'Que el firewall no bloquee el puerto 443 y que la fecha/hora del PC esté sincronizada: una hora incorrecta invalida el certificado SSL localmente.' },
+    { q: 'Hub: capa, identificador y comportamiento.', a: 'Capa 1 (Física). No lee identificadores, solo pulsos eléctricos. Inunda el tráfico a todos los puertos (broadcast) y genera colisiones. Está obsoleto.' },
+    { q: 'Switch: capa, identificador y comportamiento.', a: 'Capa 2 (Enlace de datos). Lee direcciones MAC y reenvía el tráfico solo al puerto del destino usando la tabla CAM.' },
+    { q: 'Router: capa, identificador y función.', a: 'Capa 3 (Red). Lee direcciones IP, calcula la mejor ruta y enruta paquetes entre redes distintas.' },
+    { q: '¿Quién asigna una IP dinámica y qué es el lease time?', a: 'La asigna un servidor DHCP. El lease time es el tiempo de concesión; por eso la IP puede cambiar.' },
+    { q: '¿Qué equipos suelen usar IP estática y por qué?', a: 'Servidores, impresoras de red, cámaras IP e interfaces de routers o switches: ofrecen servicios y deben estar siempre en la misma dirección.' },
+    { q: '¿Qué riesgo hay al configurar una IP estática que ya está en uso?', a: 'Provocar un conflicto de direcciones IP.' },
+    { q: '¿Qué es una VPN?', a: 'Un túnel cifrado sobre una red pública (Internet) que protege los datos corporativos y da acceso a recursos internos.' },
+    { q: 'VPN de acceso remoto vs. VPN sitio a sitio.', a: 'Acceso remoto (client-to-site): un empleado se conecta desde casa a la oficina con un cliente VPN. Sitio a sitio: conecta los routers de dos sucursales y comparte recursos de forma transparente.' },
+    { q: '¿Funciona una VPN sin conexión a internet?', a: 'No. Necesita una conexión a internet previa; su función es cifrar el tráfico y dar acceso a IPs privadas internas, no crear Internet.' },
+    { q: 'Diferencia entre ipconfig e ipconfig /all.', a: 'ipconfig muestra la IP actual. ipconfig /all añade la dirección MAC, el servidor DNS y el servidor DHCP.' },
+    { q: '¿Cómo se renueva la IP por DHCP?', a: 'Primero ipconfig /release para soltar la IP actual y después ipconfig /renew para pedir una nueva.' },
+    { q: '¿Para qué sirve ipconfig /flushdns?', a: 'Para borrar la caché DNS. Es útil si una web cambió de IP y el equipo sigue intentando ir a la dirección antigua.' },
+    { q: 'Diferencia entre ping y tracert.', a: 'ping comprueba conectividad básica con un destino. tracert muestra todos los saltos (routers) y ayuda a ver dónde se corta la conexión.' },
+    { q: 'La impresora no funciona. ¿Cómo reinicias la cola de impresión?', a: 'En Servicios (services.msc), reiniciando Print Spooler / Cola de impresión.' },
+    { q: '¿Para qué sirven el Administrador de tareas y el Visor de eventos?', a: 'Administrador de tareas: cerrar procesos colgados y ver consumo. Visor de eventos: revisar logs de fallos de aplicaciones y reinicios del sistema.' }
+  ];
+
+  let cardIndex = 0;
+  const flashcard = document.getElementById('flashcard');
+  const fcQuestion = document.getElementById('fc-question');
+  const fcAnswer = document.getElementById('fc-answer');
+  const fcHint = document.getElementById('fc-hint');
+  const fcCounter = document.getElementById('fc-counter');
+  const fcPrev = document.getElementById('fc-prev');
+  const fcNext = document.getElementById('fc-next');
+  const fcShuffle = document.getElementById('fc-shuffle');
+
+  function renderCard() {
+    const card = cards[cardIndex];
+    fcQuestion.textContent = card.q;
+    fcAnswer.textContent = card.a;
+    fcAnswer.hidden = true;
+    flashcard.classList.remove('revealed');
+    flashcard.setAttribute('aria-expanded', 'false');
+    fcHint.textContent = 'Pulsa para ver la respuesta';
+    fcCounter.textContent = (cardIndex + 1) + ' / ' + cards.length;
+    fcPrev.disabled = cardIndex === 0;
+    fcNext.disabled = cardIndex === cards.length - 1;
+  }
+
+  function toggleCard() {
+    const reveal = fcAnswer.hidden;
+    fcAnswer.hidden = !reveal;
+    flashcard.classList.toggle('revealed', reveal);
+    flashcard.setAttribute('aria-expanded', String(reveal));
+    fcHint.textContent = reveal ? 'Pulsa para ocultar la respuesta' : 'Pulsa para ver la respuesta';
+  }
+
+  flashcard.addEventListener('click', toggleCard);
+  flashcard.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      toggleCard();
+    }
+  });
+
+  fcPrev.addEventListener('click', () => {
+    if (cardIndex > 0) {
+      cardIndex -= 1;
+      renderCard();
+    }
+  });
+
+  fcNext.addEventListener('click', () => {
+    if (cardIndex < cards.length - 1) {
+      cardIndex += 1;
+      renderCard();
+    }
+  });
+
+  fcShuffle.addEventListener('click', () => {
+    for (let i = cards.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
+    cardIndex = 0;
+    renderCard();
+  });
+
+  renderCard();
+
+  // ---------- Quiz ----------
+  const quiz = [
+    {
+      q: '¿Qué puerto TCP usa HTTPS por defecto?',
+      options: ['80', '443', '22', '53'],
+      answer: 1,
+      why: 'HTTPS usa TCP 443; HTTP sin cifrar usa TCP 80.'
+    },
+    {
+      q: '¿Qué tecnología de certificados usa HTTPS para cifrar la conexión?',
+      options: ['SSL/TLS', 'FTP', 'Telnet', 'ARP'],
+      answer: 0,
+      why: 'HTTPS establece una conexión cifrada mediante certificados SSL/TLS.'
+    },
+    {
+      q: 'Un hub opera en la capa…',
+      options: ['1 · Física', '2 · Enlace de datos', '3 · Red', '4 · Transporte'],
+      answer: 0,
+      why: 'El hub trabaja en la capa física (capa 1): solo repite pulsos eléctricos.'
+    },
+    {
+      q: '¿Qué identificador lee un switch para reenviar el tráfico?',
+      options: ['Dirección IP', 'Dirección MAC', 'Puerto TCP', 'URL'],
+      answer: 1,
+      why: 'El switch usa la tabla CAM con direcciones MAC para enviar cada trama solo al puerto del destino.'
+    },
+    {
+      q: '¿Qué dispositivo conecta redes distintas y usa direcciones IP?',
+      options: ['Hub', 'Switch', 'Router', 'Repetidor'],
+      answer: 2,
+      why: 'El router opera en la capa 3 (Red) y enruta paquetes entre redes diferentes.'
+    },
+    {
+      q: '¿Quién asigna automáticamente una IP dinámica?',
+      options: ['DNS', 'DHCP', 'NAT', 'VPN'],
+      answer: 1,
+      why: 'El servidor DHCP entrega direcciones IP dinámicas con un tiempo de concesión (lease time).'
+    },
+    {
+      q: 'Un servidor o una impresora de red debería usar preferentemente…',
+      options: ['IP dinámica', 'IP estática', 'Solo IPv6', 'Ninguna IP'],
+      answer: 1,
+      why: 'Los equipos que brindan servicios usan IP estática para que los usuarios siempre los encuentren en la misma dirección.'
+    },
+    {
+      q: '¿Qué secuencia renueva la IP solicitándola de nuevo al DHCP?',
+      options: ['ipconfig /flushdns y ping', 'ipconfig /release y ipconfig /renew', 'tracert y ping', 'ipconfig /all e ipconfig'],
+      answer: 1,
+      why: 'ipconfig /release suelta la IP actual e ipconfig /renew solicita una nueva al servidor DHCP.'
+    },
+    {
+      q: '¿Para qué sirve ipconfig /flushdns?',
+      options: ['Borrar la caché DNS', 'Renovar la IP', 'Ver la dirección MAC', 'Reiniciar el adaptador'],
+      answer: 0,
+      why: 'Borra la caché DNS del equipo; útil cuando una web cambió de IP y se sigue usando la dirección antigua.'
+    },
+    {
+      q: '¿Qué comando muestra todos los saltos (routers) hasta un destino?',
+      options: ['ping', 'tracert', 'ipconfig', 'netstat'],
+      answer: 1,
+      why: 'tracert muestra el recorrido salto a salto y permite ver dónde se corta la conexión.'
+    },
+    {
+      q: 'Una VPN sitio a sitio conecta…',
+      options: ['Un empleado desde su casa', 'Los routers de dos sucursales físicas', 'Dos PCs por Bluetooth', 'Un switch y un hub'],
+      answer: 1,
+      why: 'La VPN site-to-site une los routers de dos sedes para compartir recursos de red de forma transparente.'
+    },
+    {
+      q: 'La impresora no responde y quieres reiniciar la cola de impresión. ¿Qué herramienta usas?',
+      options: ['Administrador de tareas', 'Visor de eventos', 'Servicios (services.msc)', 'ipconfig'],
+      answer: 2,
+      why: 'En services.msc puedes reiniciar el servicio Print Spooler / Cola de impresión.'
+    },
+    {
+      q: '¿Qué información adicional muestra ipconfig /all?',
+      options: ['Solo la IP actual', 'Dirección MAC, DNS y servidor DHCP', 'La tabla de rutas completa', 'Los saltos hasta el destino'],
+      answer: 1,
+      why: 'ipconfig /all añade la MAC, los servidores DNS y el servidor DHCP, entre otros datos.'
+    },
+    {
+      q: 'Si configuras una IP estática que ya está en uso, se produce…',
+      options: ['Un conflicto de direcciones IP', 'Un flush DNS', 'Una VPN site-to-site', 'Un broadcast de capa 1'],
+      answer: 0,
+      why: 'Dos equipos con la misma IP provocan un conflicto de direcciones y problemas de conectividad.'
+    }
+  ];
+
+  const quizList = document.getElementById('quiz-list');
+  const quizCheck = document.getElementById('quiz-check');
+  const quizResult = document.getElementById('quiz-result');
+  const letters = ['A', 'B', 'C', 'D'];
+
+  quiz.forEach((item, questionIndex) => {
+    const card = document.createElement('fieldset');
+    card.className = 'question';
+    card.dataset.index = String(questionIndex);
+
+    const legend = document.createElement('legend');
+    legend.innerHTML = '<span class="qnum">' + (questionIndex + 1) + '.</span> ' + item.q;
+
+    const options = document.createElement('div');
+    options.className = 'options';
+
+    item.options.forEach((option, optionIndex) => {
+      const label = document.createElement('label');
+      label.className = 'option';
+      label.innerHTML =
+        '<input type="radio" name="q' + questionIndex + '" value="' + optionIndex + '">' +
+        '<span><strong>' + letters[optionIndex] + '.</strong> ' + option + '</span>';
+      options.appendChild(label);
+    });
+
+    const explain = document.createElement('p');
+    explain.className = 'explain';
+    explain.hidden = true;
+
+    card.appendChild(legend);
+    card.appendChild(options);
+    card.appendChild(explain);
+    quizList.appendChild(card);
+  });
+
+  const questionCards = [...quizList.querySelectorAll('.question')];
+
+  quizList.addEventListener('change', (event) => {
+    const card = event.target.closest('.question');
+    if (card) card.classList.remove('missing');
+  });
+
+  function checkQuiz() {
+    const unanswered = questionCards.filter((card) => !card.querySelector('input:checked'));
+
+    questionCards.forEach((card, index) => {
+      card.classList.toggle('missing', !card.querySelector('input:checked'));
+    });
+
+    if (unanswered.length > 0) {
+      quizResult.className = 'result show mid';
+      quizResult.textContent = 'Responde todas las preguntas. Faltan: ' +
+        unanswered.map((card) => Number(card.dataset.index) + 1).join(', ') + '.';
+      quizResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    let score = 0;
+
+    questionCards.forEach((card, questionIndex) => {
+      const item = quiz[questionIndex];
+      const inputs = [...card.querySelectorAll('input')];
+      const chosen = card.querySelector('input:checked');
+
+      inputs.forEach((input, optionIndex) => {
+        input.disabled = true;
+        const label = input.closest('.option');
+        if (optionIndex === item.answer) label.classList.add('correct');
+        if (input === chosen && optionIndex !== item.answer) label.classList.add('wrong');
+      });
+
+      const isCorrect = Number(chosen.value) === item.answer;
+      if (isCorrect) score += 1;
+
+      const explain = card.querySelector('.explain');
+      explain.innerHTML = '<strong>' +
+        (isCorrect ? 'Correcto.' : 'Respuesta correcta: ' + item.options[item.answer] + '.') +
+        '</strong> ' + item.why;
+      explain.hidden = false;
+    });
+
+    const ratio = score / quiz.length;
+    quizResult.className = 'result show ' + (ratio === 1 ? 'good' : ratio >= 0.7 ? 'mid' : 'bad');
+    quizResult.textContent = score + ' / ' + quiz.length + ' correctas. ' + (
+      ratio === 1
+        ? '¡Perfecto! Dominas los conceptos clave.'
+        : ratio >= 0.7
+          ? 'Muy bien. Repasa las explicaciones de los fallos.'
+          : 'Sigue practicando: vuelve al resumen y a las tarjetas.'
+    );
+
+    quizCheck.textContent = 'Reintentar';
+    quizCheck.dataset.mode = 'retry';
+    quizResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function resetQuiz() {
+    questionCards.forEach((card) => {
+      card.classList.remove('missing');
+      card.querySelectorAll('input').forEach((input) => {
+        input.disabled = false;
+        input.checked = false;
+      });
+      card.querySelectorAll('.option').forEach((option) => {
+        option.classList.remove('correct', 'wrong');
+      });
+      const explain = card.querySelector('.explain');
+      explain.hidden = true;
+      explain.textContent = '';
+    });
+
+    quizResult.className = 'result';
+    quizResult.textContent = '';
+    quizCheck.textContent = 'Comprobar respuestas';
+    quizCheck.dataset.mode = 'check';
+    quizList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  quizCheck.addEventListener('click', () => {
+    if (quizCheck.dataset.mode === 'retry') {
+      resetQuiz();
+    } else {
+      checkQuiz();
+    }
+  });
+</script>
+</body>
+</html>
